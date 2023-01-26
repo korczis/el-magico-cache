@@ -24,9 +24,12 @@ defmodule ElMagicoLabs.Cache.MixProject do
     [
       {:jason, "~> 1.4"},
       {:open_api_spex, "~> 3.16"},
-
       {:plug, "~> 1.13"},
-      {:plug_cowboy, "~> 2.6"}
+      {:plug_cowboy, "~> 2.6"},
+
+      {:telemetry, ">= 0.0.0"},
+      {:telemetry_metrics, ">= 0.0.0"},
+      {:telemetry_poller, ">= 0.0.0"}
     ]
   end
 end
