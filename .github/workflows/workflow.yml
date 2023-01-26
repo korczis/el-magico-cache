@@ -1,26 +1,15 @@
-on: push
-
+name: Fly Deploy
+on:
+  push:
+    branches:
+      - main
+env:
+  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 jobs:
-  test:
+  deploy:
+    name: Deploy app
     runs-on: ubuntu-latest
-
-    services:
-      db:
-        image: postgres:11
-        ports: ['5432:5432']
-        env:
-          POSTGRES_PASSWORD: postgres
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-elixir@v1
-        with:
-          otp-version: '25.2.1'
-          elixir-version: '1.14.3'
-      - run: mix deps.get
-      - run: mix test
+      - uses: actions/checkout@v3
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only
