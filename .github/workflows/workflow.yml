@@ -1,32 +1,26 @@
-name: CI
-
-on: [push]
+on: push
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
 
+    services:
+      db:
+        image: postgres:11
+        ports: ['5432:5432']
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v2
       - uses: actions/setup-elixir@v1
         with:
-          otp-version: '25.01'
-          elixir-version: '1.14.2'
-
-      - name: Install dependencies
-        run: mix deps.get
-
-      - name: Compile
-        run: mix compile
-
-      - name: Run tests
-        run: mix test
-
-      - name: Generate OpenAPI documentation
-        run: mix open_api_specx.gen.docs
-
-      - name: Deploy to Fly.io
-        uses: nix-community/action-nix-pack@v0
-        with:
-          args: deploy --deployment fly.io --app-name my-app
+          otp-version: '25.2.1'
+          elixir-version: '1.14.3'
+      - run: mix deps.get
+      - run: mix test

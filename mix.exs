@@ -3,7 +3,7 @@ defmodule ElMagicoLabs.Cache.MixProject do
 
   def project do
     [
-      app: :cache,
+      app: :el_magico_cache,
       version: "0.1.0",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,

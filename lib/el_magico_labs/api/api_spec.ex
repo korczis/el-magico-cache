@@ -10,14 +10,9 @@ defmodule ElMagicoLabs.Cache.Api.ApiSpec do
         version: "1.0"
       },
       paths: %{
-        "/api/users/{id}" =>
+        "/api/cache/{id}" =>
           OpenApiSpex.PathItem.from_routes([
-            %{verb: :get, plug: PlugApp.UserHandler.Show, opts: []}
-          ]),
-        "/api/users" =>
-          OpenApiSpex.PathItem.from_routes([
-            %{verb: :get, plug: PlugApp.UserHandler.Index, opts: []},
-            %{verb: :post, plug: PlugApp.UserHandler.Create, opts: []}
+            %{verb: :get, plug: ElMagicoLabs.Cache.Api.CacheHandler.Show, opts: []}
           ])
       }
     }

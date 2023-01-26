@@ -5,12 +5,15 @@ defmodule ElMagicoLabs.Application do
 
   use Application
 
-
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      {ElMagicoLabs.Cache, %{}},
-      {Plug.Cowboy, scheme: :http, plug: ElMagicoLabs.Cache.Api.Router, options: [port: 5000]}
+      {ElMagicoLabs.Cache, %{
+        resolvers: %{name: fn ->
+          "Tomas Korcak"
+        end}
+      }},
+      {Plug.Cowboy, scheme: :http, plug: ElMagicoLabs.Cache.Api.Router, options: [port: 4000]}
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Application.html

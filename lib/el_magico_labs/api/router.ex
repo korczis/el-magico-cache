@@ -14,16 +14,12 @@ defmodule ElMagicoLabs.Cache.Api.Router.Api do
   plug :match
   plug :dispatch
 
-#  get "/api/users", to: PlugApp.UserHandler.Index
-#  post "/api/users", to: PlugApp.UserHandler.Create
-#  get "/api/users/:id", to: PlugApp.UserHandler.Show
+  get "/api/cache/:id", to: ElMagicoLabs.Cache.Api.CacheHandler.Show
   get "/api/openapi", to: OpenApiSpex.Plug.RenderSpec
 end
 
 defmodule  ElMagicoLabs.Cache.Api.Router do
   use Plug.Router
-
-  alias ElMagicoLabs.Cache.Api.Router
 
   plug Plug.RequestId
   plug Plug.Logger
@@ -31,6 +27,6 @@ defmodule  ElMagicoLabs.Cache.Api.Router do
   plug :match
   plug :dispatch
 
-  match "/api/*_", to: Router.Api
-  match "/*_", to: Router.Html
+  match "/api/*_", to: ElMagicoLabs.Cache.Api.Router.Api
+  match "/*_", to: ElMagicoLabs.Cache.Api.Router.Html
 end
