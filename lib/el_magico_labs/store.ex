@@ -1,5 +1,5 @@
-defmodule EqLabs.Cache.Store do
-  @default_cache EqLabs.Cache
+defmodule ElMagicoLabs.Cache.Store do
+  @default_cache ElMagicoLabs.Cache
   @default_opts [
     cache:  @default_cache
   ]
