@@ -5,14 +5,12 @@ on:
       - main
       - master
 
-  workflow_dispatch:
-
 env:
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
 jobs:
-  env:
-    FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+#  env:
+#    FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
   deploy:
     name: Deploy app
