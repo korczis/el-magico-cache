@@ -9,11 +9,16 @@ defmodule ElMagicoLabs.Application do
     # List all child processes to be supervised
     children = [
       {ElMagicoLabs.Cache, %{
-        resolvers: %{name: fn ->
-          "Tomas Korcak"
-        end}
+        resolvers: %{
+          "author" =>
+            fn ->
+              "Tomas Korcak"
+            end
+        },
+        restart: :permanent
       }},
-      {Plug.Cowboy, scheme: :http, plug: ElMagicoLabs.Cache.Api.Router, options: [port: 4000]}
+      {Plug.Cowboy, scheme: :http, plug: ElMagicoLabs.Cache.Api.Router, options: [port: 4000]},
+      # {Heart.Worker, :start_link, [ElMagicoLabs.Cache] }
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Application.html
