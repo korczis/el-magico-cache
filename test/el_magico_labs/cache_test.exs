@@ -1,8 +1,8 @@
-defmodule ElMagicoLabs.CacheTest do
+defmodule ElMagicoLabs.RehydratingCacheTest do
   use ExUnit.Case
-  doctest ElMagicoLabs.Cache
+  doctest ElMagicoLabs.RehydratingCache
 
   test "greets the world" do
-    assert ElMagicoLabs.Cache.hello() == :world
+    assert ElMagicoLabs.RehydratingCache.hello() == :world
   end
 end

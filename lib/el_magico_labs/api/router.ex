@@ -1,4 +1,4 @@
-defmodule ElMagicoLabs.Cache.Api.Router.Html do
+defmodule ElMagicoLabs.RehydratingCache.Api.Router.Html do
   use Plug.Router
   # use Plug.Debugger
 
@@ -9,9 +9,8 @@ defmodule ElMagicoLabs.Cache.Api.Router.Html do
   # get "/swaggerui", to: OpenApiSpex.Plug.SwaggerUI, init_opts: [path: "/api/openapi"]
 
   plug Plug.Static,
-       at: "/public",
-       from: :el_magico_cache,
-       only: ~w(images robots.txt)
+       at: "/doc",
+       from: :el_magico_cache
 
   plug :not_found
 
@@ -20,19 +19,19 @@ defmodule ElMagicoLabs.Cache.Api.Router.Html do
   end
 end
 
-defmodule ElMagicoLabs.Cache.Api.Router.Api do
+defmodule ElMagicoLabs.RehydratingCache.Api.Router.Api do
   use Plug.Router
 
-  plug OpenApiSpex.Plug.PutApiSpec, module: ElMagicoLabs.Cache.Api.ApiSpec
+  plug OpenApiSpex.Plug.PutApiSpec, module: ElMagicoLabs.RehydratingCache.Api.ApiSpec
   plug :match
   plug :dispatch
 
-  get "/api/cache/:id", to: ElMagicoLabs.Cache.Api.CacheHandler.Show
-  post "/api/cache", to: ElMagicoLabs.Cache.Api.CacheHandler.Create
+  get "/api/cache/:id", to: ElMagicoLabs.RehydratingCache.Api.CacheHandler.Show
+  post "/api/cache", to: ElMagicoLabs.RehydratingCache.Api.CacheHandler.Create
   get "/api/openapi", to: OpenApiSpex.Plug.RenderSpec
 end
 
-defmodule  ElMagicoLabs.Cache.Api.Router do
+defmodule  ElMagicoLabs.RehydratingCache.Api.Router do
   use Plug.Router
   # use Plug.Debugger
 
@@ -42,6 +41,6 @@ defmodule  ElMagicoLabs.Cache.Api.Router do
   plug :match
   plug :dispatch
 
-  match "/api/*_", to: ElMagicoLabs.Cache.Api.Router.Api
-  match "/*_", to: ElMagicoLabs.Cache.Api.Router.Html
+  match "/api/*_", to: ElMagicoLabs.RehydratingCache.Api.Router.Api
+  match "/*_", to: ElMagicoLabs.RehydratingCache.Api.Router.Html
 end

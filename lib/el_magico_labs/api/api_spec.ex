@@ -1,4 +1,4 @@
-defmodule ElMagicoLabs.Cache.Api.ApiSpec do
+defmodule ElMagicoLabs.RehydratingCache.Api.ApiSpec do
   alias OpenApiSpex.{Info, OpenApi}
   @behaviour OpenApi
 
@@ -12,11 +12,11 @@ defmodule ElMagicoLabs.Cache.Api.ApiSpec do
       paths: %{
         "/api/cache/{id}" =>
           OpenApiSpex.PathItem.from_routes([
-            %{verb: :get, plug: ElMagicoLabs.Cache.Api.CacheHandler.Show, opts: []}
+            %{verb: :get, plug: ElMagicoLabs.RehydratingCache.Api.CacheHandler.Show, opts: []}
           ]),
         "/api/cache" =>
           OpenApiSpex.PathItem.from_routes([
-            %{verb: :post, plug: ElMagicoLabs.Cache.Api.CacheHandler.Create, opts: []}
+            %{verb: :post, plug: ElMagicoLabs.RehydratingCache.Api.CacheHandler.Create, opts: []}
           ])
       }
     }

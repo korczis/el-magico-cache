@@ -1,4 +1,4 @@
-defmodule ElMagicoLabs.Cache.Api.Schemas do
+defmodule ElMagicoLabs.RehydratingCache.Api.Schemas do
   require OpenApiSpex
   alias OpenApiSpex.Schema
 

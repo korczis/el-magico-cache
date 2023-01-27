@@ -1,4 +1,4 @@
-# ElMagicoLabs.Cache
+# ElMagicoLabs.RehydratingCache
 
 **TODO: Add description**
 

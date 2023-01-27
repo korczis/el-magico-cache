@@ -1,5 +1,5 @@
-defmodule ElMagicoLabs.Cache.Store do
-  @default_cache ElMagicoLabs.Cache
+defmodule ElMagicoLabs.RehydratingCache.Store do
+  @default_cache ElMagicoLabs.SimpleCache
   @default_cache_name :default_cache
 
   @default_opts [    cache:  @default_cache  ]

@@ -1,4 +1,4 @@
-defmodule ElMagicoLabs.Cache.MixProject do
+defmodule ElMagicoLabs.RehydratingCache.MixProject do
   use Mix.Project
 
   def project do
@@ -40,10 +40,11 @@ defmodule ElMagicoLabs.Cache.MixProject do
       {:abacus, "~> 2.0"},
 
       {:ex_doc, "~> 0.29.1", only: :dev, runtime: false},
+      {:horde, ">= 0.8.7"},
 
-      {:telemetry, ">= 0.0.0"},
-      {:telemetry_metrics, ">= 0.0.0"},
-      {:telemetry_poller, ">= 0.0.0"}
+      # {:telemetry, ">= 0.0.0"},
+      # {:telemetry_metrics, ">= 0.0.0"},
+      # {:telemetry_poller, ">= 0.0.0"}
     ]
   end
 end

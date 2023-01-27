@@ -1,9 +1,9 @@
-defmodule ElMagicoLabs.Cache.Api.CacheHandler do
+defmodule ElMagicoLabs.RehydratingCache.Api.CacheHandler do
   alias OpenApiSpex.{Operation, Schema}
-  alias ElMagicoLabs.Cache.Api.Schemas
+  alias ElMagicoLabs.RehydratingCache.Api.Schemas
 
   import OpenApiSpex.Operation, only: [parameter: 5, response: 3, request_body: 4]
-  alias ElMagicoLabs.Cache.Store, as: CacheStore
+  alias ElMagicoLabs.RehydratingCache.Store, as: CacheStore
 
   import Plug.Conn
 
@@ -44,6 +44,12 @@ defmodule ElMagicoLabs.Cache.Api.CacheHandler do
             id: id,
             value: value
           }
+
+        value ->
+            %{
+              id: id,
+              value: value
+            }
       end
 
       case res do

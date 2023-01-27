@@ -8,7 +8,14 @@ defmodule ElMagicoLabs.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      {ElMagicoLabs.Cache, %{
+      {ElMagicoLabs.Registry, [name: ElMagicoLabs.Registry, keys: :unique]},
+      {ElMagicoLabs.DistributedSupervisor, [name: ElMagicoLabs.DistributedSupervisor, strategy: :one_for_one]},
+
+      # ElMagicoLabs.Supervisor,
+
+      # ElMagicoLabs.PeriodicCache,
+
+      {ElMagicoLabs.SimpleCache, %{
         resolvers: %{
           "author" =>
             fn ->
@@ -17,8 +24,8 @@ defmodule ElMagicoLabs.Application do
         },
         restart: :permanent
       }},
-      {Plug.Cowboy, scheme: :http, plug: ElMagicoLabs.Cache.Api.Router, options: [port: 4000]},
-      # {Heart.Worker, :start_link, [ElMagicoLabs.Cache] }
+
+      {Plug.Cowboy, scheme: :http, plug: ElMagicoLabs.RehydratingCache.Api.Router, options: [port: 4000]},
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Application.html
